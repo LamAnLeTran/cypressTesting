@@ -6,7 +6,7 @@
 // https://on.cypress.io/writing-first-test
 /// <reference types="cypress" />
 
-const { link } = require("fs")
+
 
 Cypress.on('uncaught:exception', (err, runnable) => {
     // returning false here prevents Cypress from
