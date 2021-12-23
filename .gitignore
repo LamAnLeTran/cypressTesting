@@ -1,0 +1,14 @@
+.idea/
+doc/
+
+# Folders
+/cypress/reports/
+/cypress/screenshots/
+/cypress/videos/
+/node_modules/
+
+# Files
+package-lock.json
+*.cucumber.json
+*.mp4
+*.DS_store
