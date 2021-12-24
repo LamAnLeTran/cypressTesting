@@ -1,23 +1,5 @@
-/// <reference types="cypress" />
-
-
-
-
-
-Cypress.on('uncaught:exception', (err, runnable) => {
-    // returning false here prevents Cypress from
-    // failing the test
-    return false
-})
-describe('Testcase for Manheim arrangment', () => {
-    it('Verify condition grade down to up', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+export class PublicAuctionPageSort{
+    VerifyCRAsc(){
         cy.get('[data-test-id="sorting"]').then(listArrangment => {
             cy.wrap(listArrangment).select('conditionGradeAsc')
             cy.get('[data-test-id="listings"]').find('[class="SearchResultsDetailView__container sw_row NoInfiniteScrollerStyles"]').then(checkMake => {
@@ -32,15 +14,8 @@ describe('Testcase for Manheim arrangment', () => {
                     })  
             })
         })
-    })
-    it('Verify condition grade up to down', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+    }
+    verifyCRDesc(){
         cy.get('[data-test-id="sorting"]').then(listArrangment => {
             cy.wrap(listArrangment).select('conditionGradeDesc')
             cy.get('[data-test-id="listings"]').find('[class="SearchResultsDetailView__container sw_row NoInfiniteScrollerStyles"]').then(checkMake => {
@@ -55,15 +30,8 @@ describe('Testcase for Manheim arrangment', () => {
                     })  
             })
         })
-    })
-    it('Verify year down to up', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+    }
+    verifyYearAsc(){
         cy.get('[data-test-id="sorting"]').then(listArrangment => {
             cy.wrap(listArrangment).select('yearAsc')
             cy.wait(5000)
@@ -74,19 +42,12 @@ describe('Testcase for Manheim arrangment', () => {
                         arr.push(Number(year))
                     })
                 }).then(checkIncrese => {
-                    expect(isIncreasing(arr), arr).to.be.true
+                    expect(isIncreasing(arr)).to.be.true
                 })
             })
         })
-    })
-    it('Verify year up to down', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+    }
+    verifyYearDesc(){
         cy.get('[data-test-id="sorting"]').then(listArrangment => {
             cy.wrap(listArrangment).select('yearDesc')
             cy.wait(5000)
@@ -97,21 +58,13 @@ describe('Testcase for Manheim arrangment', () => {
                         arr.push(Number(year))
                     })
                 }).then(checkIncrese => {
-                    expect(isIncreasing(arr), arr).to.be.false
+                    expect(isIncreasing(arr)).to.be.false
                 })
             })
         })
-    })
-    it.only('Verify odometer down to up', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
-    })
-})
+    }
+}
+export const auctionPageSort = new PublicAuctionPageSort()
 var isIncreasing = (arr) => {
     return (
       arr.every((v, i) => i === 0 || v >= arr[i - 1])

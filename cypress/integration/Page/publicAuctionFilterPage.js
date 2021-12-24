@@ -1,43 +1,11 @@
-// firstTest.spec.js created with Cypress
-//
-// Start writing your Cypress tests below!
-// If you're unfamiliar with how Cypress works,
-// check out the link below and learn how to write your first test:
-// https://on.cypress.io/writing-first-test
-/// <reference types="cypress" />
-
-
-
-Cypress.on('uncaught:exception', (err, runnable) => {
-    // returning false here prevents Cypress from
-    // failing the test
-    return false
-  })
-describe('Testcase for Manheim filter', () => {
-    it('Verify that when user choose a filter, that option will apear as a tag in filter section', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
-        cy.get('[data-test-id="Passenger"]').check().then(filterCheck => {   
-            //Assert    
+export class PublicAuctionPage{
+    verifyTagFilterOption(){
+        cy.get('[data-test-id="Passenger"]').check().then(filterCheck => {     
             cy.get('[data-test-id="breadcrumb-list"]').find('span').should('contain', 'Passenger')
         })
-    })
-    it('Verify that the number of result is the same with the number from the option filter', () => {
-        //go to test page
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
-        cy.get('[data-test-id="Passenger"]').check().then(filterCheck => {       
-            //cy.get('[data-test-id="breadcrumb-list"]').find('span').should('contain', 'Passenger')
+    }
+    verifyNumberOfResult(){
+        cy.get('[data-test-id="Passenger"]').check().then(filterCheck => {
             cy.contains('li', 'Passenger').find('[class="facet-value"]').then(lengthCheck =>{
                 const length = lengthCheck.text().replace(/[()]/g,'')
                 cy.get('[data-test-id="listings"]').find('[class="SearchResultsDetailView__container sw_row NoInfiniteScrollerStyles"]').should('have.length', length)
@@ -45,16 +13,8 @@ describe('Testcase for Manheim filter', () => {
             })
             
         })
-        
-    })
-    it('Verify that when user choose "Make" from the filter the result will have the correct Make', () =>{
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+    }
+    verifyMakeFilter(){
         cy.get('[data-test-id="Chevrolet"]').check()
         cy.wait(5000)
         cy.get('[data-test-id="listings"]').find('[class="SearchResultsDetailView__container sw_row NoInfiniteScrollerStyles"]').then(checkMake => {
@@ -62,15 +22,8 @@ describe('Testcase for Manheim filter', () => {
                 cy.wrap(listItem).find('[data-test-id="make"]').should('contain', 'Chevrolet')
             })
         })
-    })
-    it('Verify that when the user choose a range of odometer the result will have correct with user option', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+    }
+    verifyOdometerFilter(){
         cy.get('[data-test-id="filter: odometer"]').then(odometer => {
             const odometerMin = 10000
             const odometerMax = 110000
@@ -88,15 +41,8 @@ describe('Testcase for Manheim filter', () => {
                 })
             })
         })
-    })
-    it('Verify conditon information filter', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+    }
+    verifyConditionInformation(){
         cy.get('[data-test-id="filter: condition information"]').then(condition => {
             cy.wrap(condition).click()
             cy.get('[data-test-id="With Condition Report"]').check()
@@ -107,15 +53,8 @@ describe('Testcase for Manheim filter', () => {
                 })
             })
         })
-    })
-    it('Verify owner filter', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+    }
+    verifyOwner(){
         cy.get('[data-test-id="filter: owners"]').then(owner => {
             cy.wrap(owner).click()
             cy.get('[data-test-id="AutocheckOwnerCountFilter"]').select('1')
@@ -126,15 +65,8 @@ describe('Testcase for Manheim filter', () => {
                 })
             })
         })
-    })
-    it('Verify accident report filter', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+    }
+    verifyAccidentReport(){
         cy.get('[data-test-id="filter: accidents reported"]').then(accident => {
             cy.wrap(accident).click()
             cy.wrap(accident).find('.Dropdown__select').select('Accidents')
@@ -145,15 +77,8 @@ describe('Testcase for Manheim filter', () => {
                 })
             })
         })
-    })
-    it('Verify autocheck score', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+    }
+    verifyAutocheckScore(){
         cy.get('[data-test-id="filter: autocheck score"]').then(autoCheckScore => {
             cy.wrap(autoCheckScore).click()
             cy.get('[data-test-id="range: bid or buy now price"]').then(form => {
@@ -168,15 +93,8 @@ describe('Testcase for Manheim filter', () => {
                 })
             })
         })
-    })
-    it('Verify Odometer Check', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+    }
+    verifyOdometerCheck(){
         cy.get('[data-test-id="filter: odometer check"]').then(odometer => {
             cy.wrap(odometer).click()
             cy.wrap(odometer).find('[data-test-id="OK"]').check()
@@ -187,15 +105,8 @@ describe('Testcase for Manheim filter', () => {
                 })
             })
         })
-    })
-    it('Verify title proplems check', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+    }
+    verifyProplemCheck(){
         cy.get('[data-test-id="filter: title problem check"]').then(proplem => {
             cy.wrap(proplem).click()
             cy.wrap(proplem).find('[data-test-id="OK"]').check()
@@ -206,15 +117,8 @@ describe('Testcase for Manheim filter', () => {
                 })
             })
         })
-    })
-    it('Verify Use/event check', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+    }
+    verifyUseOrEventCheck(){
         cy.get('[data-test-id="filter: use event check"]').then(event => {
             cy.wrap(event).click()
             cy.wrap(event).find('[data-test-id="OK"]').check()
@@ -225,15 +129,8 @@ describe('Testcase for Manheim filter', () => {
                 })
             })
         })
-    })
-    it('Verify Cadian vehicles', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+    }
+    verifyCadianVehicle(){
         cy.get('[data-test-id="filter: canadian vehicles"]').then(cadian => {
             cy.wrap(cadian).click()
             cy.wrap(cadian).find('select').select('T')
@@ -244,15 +141,8 @@ describe('Testcase for Manheim filter', () => {
                 })
             })
         })
-    })
-    it('Verify energy type', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+    }
+    verifyEngineType(){
         cy.get('[data-test-id="filter: engine type"]').then(type => {
             cy.wrap(type).click()
             cy.wrap(type).find('[data-test-id="4 Cylinder"]').check()
@@ -263,15 +153,8 @@ describe('Testcase for Manheim filter', () => {
                 })
             })
         })
-    })
-    it('Verify exterior color', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+    }
+    verifyExteriorClor(){
         cy.get('[data-test-id="filter: exterior color"]').then(color => {
             cy.wrap(color).click()
             cy.wrap(color).find('[data-test-id="Black"]').check()
@@ -282,15 +165,8 @@ describe('Testcase for Manheim filter', () => {
                 })
             })
         })
-    })
-    it('Verify door count', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+    }
+    verifyDoorCount(){
         cy.get('[data-test-id="filter: door count"]').then(door => {
             cy.wrap(door).click()
             cy.wrap(door).find('[data-test-id="start"]').select('1')
@@ -311,15 +187,8 @@ describe('Testcase for Manheim filter', () => {
                 })
             })
         })
-    })
-    it('Verify drive train', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+    }
+    verifyDriveTrain(){
         cy.get('[data-test-id="filter: drive train"]').then(drive => {
             cy.wrap(drive).click()
             cy.wrap(drive).find('[data-test-id="4 Wheel Drive"]').check()
@@ -339,15 +208,8 @@ describe('Testcase for Manheim filter', () => {
                 })
             })
         })
-    })
-    it('Verify frame damage', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+    }
+    verifyFrameDamge(){
         cy.get('[data-test-id="filter: frame damage"]').then(fram => {
             cy.wrap(fram).click()
             cy.wrap(fram).find('select').select('T')
@@ -363,15 +225,8 @@ describe('Testcase for Manheim filter', () => {
                 })
             })
         })
-    })
-    it('Verify fuel type', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+    }
+    verifyFuelType(){
         cy.get('[data-test-id="filter: fuel type"]').then(fuel => {
             cy.wrap(fuel).click()
             cy.wrap(fuel).find('[data-test-id="Ethanol"]').check()
@@ -391,15 +246,8 @@ describe('Testcase for Manheim filter', () => {
                 })
             })
         })
-    })
-    it('Verify vehicle type', () => {
-        cy.visit('/')
-        cy.get('.uhf-user__locations').click()
-        cy.contains('U.S. Locations').click()
-        cy.contains('Manheim Cincinnati').click()
-        cy.contains('Public Auctions').click()
-        cy.contains('See Inventory').click()
-        cy.wait(10000)
+    }
+    verifyVehicleType(){
         cy.get('[data-test-id="filter: vehicle type"]').then(type => {
             cy.wrap(type).click()
             cy.wrap(type).find('[data-test-id="Passenger"]').check()
@@ -419,5 +267,6 @@ describe('Testcase for Manheim filter', () => {
                 })
             })
         })
-    })
-})
+    }
+}
+export const auctionPageFilter = new PublicAuctionPage()
