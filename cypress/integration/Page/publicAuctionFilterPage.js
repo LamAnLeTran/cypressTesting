@@ -1,3 +1,4 @@
+/// <reference types="cypress" />
 export class PublicAuctionPage{
     verifyTagFilterOption(){
         cy.get('[data-test-id="Passenger"]').check().then(filterCheck => {     
@@ -57,11 +58,11 @@ export class PublicAuctionPage{
     verifyOwner(){
         cy.get('[data-test-id="filter: owners"]').then(owner => {
             cy.wrap(owner).click()
-            cy.get('[data-test-id="AutocheckOwnerCountFilter"]').select('1')
+            cy.get('[data-test-id="AutocheckOwnerCountFilter"]').select(2)
             cy.wait(5000)
             cy.get('[data-test-id="listings"]').find('[class="SearchResultsDetailView__container sw_row NoInfiniteScrollerStyles"]').then(checkMake => {
                 cy.wrap(checkMake).each(listItem => {
-                    cy.wrap(listItem).find('[data-test-id="owners"]').should('contain', 1)
+                    cy.wrap(listItem).find('[data-test-id="owners"]').should('contain', 2)
                 })
             })
         })
@@ -69,7 +70,7 @@ export class PublicAuctionPage{
     verifyAccidentReport(){
         cy.get('[data-test-id="filter: accidents reported"]').then(accident => {
             cy.wrap(accident).click()
-            cy.wrap(accident).find('.Dropdown__select').select('Accidents')
+            cy.wrap(accident).find('.Dropdown__select').select(1)
             cy.wait(5000)
             cy.get('[data-test-id="listings"]').find('[class="SearchResultsDetailView__container sw_row NoInfiniteScrollerStyles"]').then(checkMake => {
                 cy.wrap(checkMake).each(listItem => {

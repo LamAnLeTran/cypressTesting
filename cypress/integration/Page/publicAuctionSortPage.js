@@ -9,7 +9,7 @@ export class PublicAuctionPageSort{
                             const num = Number(number)
                             arr.push(num)                                         
                         })                       
-                    }).then(checkIncrese => {
+                    }).then(checkIncrease => {
                         expect(isIncreasing(arr)).to.be.true
                     })  
             })
@@ -25,7 +25,7 @@ export class PublicAuctionPageSort{
                             const num = Number(number)
                             arr.push(num)                                         
                         })                       
-                    }).then(checkIncrese => {
+                    }).then(checkIncrease => {
                         expect(isIncreasing(arr)).to.be.false
                     })  
             })
@@ -41,7 +41,7 @@ export class PublicAuctionPageSort{
                     cy.wrap(listItem).find('[data-test-id="year"]').invoke('text').then(year => {
                         arr.push(Number(year))
                     })
-                }).then(checkIncrese => {
+                }).then(checkIncrease => {
                     expect(isIncreasing(arr)).to.be.true
                 })
             })
@@ -57,7 +57,7 @@ export class PublicAuctionPageSort{
                     cy.wrap(listItem).find('[data-test-id="year"]').invoke('text').then(year => {
                         arr.push(Number(year))
                     })
-                }).then(checkIncrese => {
+                }).then(checkIncrease => {
                     expect(isIncreasing(arr)).to.be.false
                 })
             })

@@ -1,3 +1,4 @@
 {
-  "baseUrl": "https://www.manheim.com/"
+  "baseUrl": "https://www.manheim.com/",
+  "defaultCommandTimeout": 10000
 }
