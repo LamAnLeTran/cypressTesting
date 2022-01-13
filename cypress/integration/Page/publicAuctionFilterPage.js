@@ -83,8 +83,8 @@ export class PublicAuctionPage{
         cy.get('[data-test-id="filter: autocheck score"]').then(autoCheckScore => {
             cy.wrap(autoCheckScore).click()
             cy.get('[data-test-id="range: bid or buy now price"]').then(form => {
-                cy.wrap(form).find('[data-test-id="start"]').select('0')
-                cy.wrap(form).find('[data-test-id="end"]').select('60')
+                cy.wrap(form).find('[data-test-id="start"]').select(1)
+                cy.wrap(form).find('[data-test-id="end"]').select(7)
                 cy.wait(10000)
             })
             cy.get('[data-test-id="listings"]').find('[class="SearchResultsDetailView__container sw_row NoInfiniteScrollerStyles"]').then(checkMake => {
@@ -134,7 +134,7 @@ export class PublicAuctionPage{
     verifyCadianVehicle(){
         cy.get('[data-test-id="filter: canadian vehicles"]').then(cadian => {
             cy.wrap(cadian).click()
-            cy.wrap(cadian).find('select').select('T')
+            cy.wrap(cadian).find('select').select(1)
             cy.wait(5000)
             cy.get('[data-test-id="listings"]').find('[class="SearchResultsDetailView__container sw_row NoInfiniteScrollerStyles"]').then(checkMake => {
                 cy.wrap(checkMake).each(listItem => {             
@@ -170,8 +170,8 @@ export class PublicAuctionPage{
     verifyDoorCount(){
         cy.get('[data-test-id="filter: door count"]').then(door => {
             cy.wrap(door).click()
-            cy.wrap(door).find('[data-test-id="start"]').select('1')
-            cy.wrap(door).find('[data-test-id="end"]').select('5')
+            cy.wrap(door).find('[data-test-id="start"]').select(1)
+            cy.wrap(door).find('[data-test-id="end"]').select(5)
             cy.wait(5000)
             cy.get('[data-test-id="listings"]').find('[class="SearchResultsDetailView__container sw_row NoInfiniteScrollerStyles"]').each((listItem, index) => {
                 cy.get('[data-test-id="vdp-link"]').eq(index).click().then(link => {
@@ -213,7 +213,7 @@ export class PublicAuctionPage{
     verifyFrameDamge(){
         cy.get('[data-test-id="filter: frame damage"]').then(fram => {
             cy.wrap(fram).click()
-            cy.wrap(fram).find('select').select('T')
+            cy.wrap(fram).find('select').select(1)
             cy.wait(5000)
             cy.get('[data-test-id="listings"]').find('[class="SearchResultsDetailView__container sw_row NoInfiniteScrollerStyles"]').each((listItem, index) => {
                 cy.get('[data-test-id="vdp-link"]').eq(index).click().then(link => {
