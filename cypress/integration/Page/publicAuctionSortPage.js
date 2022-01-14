@@ -1,30 +1,30 @@
 export class PublicAuctionPageSort {
-  VerifyCRAsc() {
+  verifyCRAsc() {
     cy.get('[data-test-id="sorting"]').then((listArrangment) => {
-      selectSortOotion(listArrangment, 1);
+      selectSortOption(listArrangment, 1);
       verifySortCRAsc();
     });
   }
   verifyCRDesc() {
     cy.get('[data-test-id="sorting"]').then((listArrangment) => {
-    selectSortOotion(listArrangment, 2);
+    selectSortOption(listArrangment, 2);
     verifySortCRDesc();
     });
   }
   verifyYearAsc() {
     cy.get('[data-test-id="sorting"]').then((listArrangment) => {
-    selectSortOotion(listArrangment, 14);
+    selectSortOption(listArrangment, 14);
     verifySortYearAsc();
     });
   }
   verifyYearDesc() {
     cy.get('[data-test-id="sorting"]').then((listArrangment) => {
-    selectSortOotion(listArrangment, 15);
+    selectSortOption(listArrangment, 15);
     verifySortYearDesc();
     });
   }
 }
-function selectSortOotion(name, index) {
+function selectSortOption(name, index) {
   cy.get(name).select(index);
   cy.wait(2000);
 }

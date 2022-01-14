@@ -8,7 +8,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 describe('Test case for condition grade sort', () => {
     it('Verify condition grade ascending', () => {
         navigateTo.publicAuctionPage()
-        auctionPageSort.VerifyCRAsc()
+        auctionPageSort.verifyCRAsc()
     })
     it('Verify condition grade decrease', () => {
         navigateTo.publicAuctionPage()
