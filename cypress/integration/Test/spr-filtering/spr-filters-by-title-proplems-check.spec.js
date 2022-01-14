@@ -8,6 +8,6 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 describe('Testcase for Title/Proplems check', () => {
     it('Verify that when choose "OK" from Title/Proplems check, the result will correct', () => {
         navigateTo.publicAuctionPage()
-        auctionPageFilter.verifyProplemCheck()
+        auctionPageFilter.verifyProblemCheck()
     })
 })

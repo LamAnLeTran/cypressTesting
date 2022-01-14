@@ -8,6 +8,6 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 describe('Testcase for frame damge filter', () => {
     it('Verify that when choose a option from frame damage filter, the result will correct', () => {
         navigateTo.publicAuctionPage()
-        auctionPageFilter.verifyFrameDamge()
+        auctionPageFilter.verifyFrameDamage()
     })
 })

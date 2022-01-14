@@ -38,7 +38,7 @@ export class PublicAuctionPage {
     verifyAutocheckScore() {
         cy.get('[data-test-id="filter: autocheck score"]').then(autoCheckScore => {
             click(autoCheckScore)
-            selectScroeAutocheck()
+            selectScoreAutocheck()
             verifyFilterAutocheckScore()
         })
     }
@@ -48,10 +48,10 @@ export class PublicAuctionPage {
             verifyFilterOdometerCheck()
         })
     }
-    verifyProplemCheck() {
+    verifyProblemCheck() {
         cy.get('[data-test-id="filter: title problem check"]').then(proplem => {
             click(proplem)
-            verifyFilterProplemCheck()
+            verifyFilterProblemCheck()
         })
     }
     verifyUseOrEventCheck() {
@@ -60,10 +60,10 @@ export class PublicAuctionPage {
             verifyFilterUseOrEventCheck()
         })
     }
-    verifyCadianVehicle() {
+    verifyCanadianVehicle() {
         cy.get('[data-test-id="filter: canadian vehicles"]').then(cadian => {
             click(cadian)
-            verifyFilterCadianVehicle()
+            verifyFilterCanadianVehicle()
         })
     }
     verifyEngineType() {
@@ -90,10 +90,10 @@ export class PublicAuctionPage {
             verifyFilterDriveTrain()
         })
     }
-    verifyFrameDamge() {
+    verifyFrameDamage() {
         cy.get('[data-test-id="filter: frame damage"]').then(frame => {
             click(frame)
-            verifyFilterFrameDamge()
+            verifyFilterFrameDamage()
         })
     }
     verifyFuelType() {
@@ -153,7 +153,7 @@ function verifyFilterAccidentReport() {
         })
     })
 }
-function selectScroeAutocheck() {
+function selectScoreAutocheck() {
     cy.get('[data-test-id="range: bid or buy now price"]').then(form => {
         cy.wrap(form).find('[data-test-id="start"]').select(1)
         cy.wrap(form).find('[data-test-id="end"]').select(7)
@@ -177,7 +177,7 @@ function verifyFilterOdometerCheck() {
         })
     })
 }
-function verifyFilterProplemCheck() {
+function verifyFilterProblemCheck() {
     cy.get('[data-test-id="filter: title problem check"]').find('[data-test-id="OK"]').check()
     cy.wait(5000)
     cy.get('[data-test-id="listings"]').find('[class="SearchResultsDetailView__container sw_row NoInfiniteScrollerStyles"]').then(checkMake => {
@@ -195,7 +195,7 @@ function verifyFilterUseOrEventCheck() {
         })
     })
 }
-function verifyFilterCadianVehicle() {
+function verifyFilterCanadianVehicle() {
     cy.get('[data-test-id="filter: canadian vehicles"]').find('select').select(1)
     cy.wait(5000)
     cy.get('[data-test-id="listings"]').find('[class="SearchResultsDetailView__container sw_row NoInfiniteScrollerStyles"]').then(checkMake => {
@@ -259,7 +259,7 @@ function verifyFilterDriveTrain() {
         })
     })
 }
-function verifyFilterFrameDamge() {
+function verifyFilterFrameDamage() {
     cy.get('[data-test-id="filter: frame damage"]').find('select').select(1)
     cy.wait(5000)
     cy.get('[data-test-id="listings"]').find('[class="SearchResultsDetailView__container sw_row NoInfiniteScrollerStyles"]').each((listItem, index) => {

@@ -8,6 +8,6 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 describe('Testcase for Cadian vehicles', () => {
     it('Verify when choose a option from Cadian vehicles filter, the result will correct', () => {
         navigateTo.publicAuctionPage()
-        auctionPageFilter.verifyCadianVehicle()
+        auctionPageFilter.verifyCanadianVehicle()
     })
 })
