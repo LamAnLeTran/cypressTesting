@@ -1,3 +1,5 @@
 {
-  "baseUrl": "https://www.manheim.com/"
+  "baseUrl": "https://www.manheim.com/",
+  "integrationFolder": "cypress/integration/Test",
+  "defaultCommandTimeout": 10000
 }
